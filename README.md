@@ -9,6 +9,7 @@ A simple project that lets the user insert, update, delete & get products from t
 ### 2. In MongoDB Compass:
    - Create Database: IMS
    - Collection Name: products
+### Note: Step second is not necessary.
 
 ### 3. Then in VS Code, open two terminals.
    
