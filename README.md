@@ -27,6 +27,6 @@ A simple project that lets the user insert, update, delete & get products from t
    - npm install
    - npm install --save-dev webpack@latest
    - npm install react-router-dom
-   - npm start
+   - npm star
 
 
