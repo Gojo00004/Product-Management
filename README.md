@@ -16,7 +16,7 @@ A simple project that lets the user insert, update, delete & get products from t
 ### 4. In one terminal run these commands (For Backend / Server):
    - cd Backend
    - npm init
-   - npm install
+   - npm install mongoose
    - npm run server
 
 ### 5. In the other terminal run these commands (For Frontend / Client):
@@ -24,6 +24,7 @@ A simple project that lets the user insert, update, delete & get products from t
    - cd product_management
    - npm init
    - npm install
+   - npm install --save-dev webpack@latest
    - npm install react-router-dom
    - npm start
 
