@@ -1,0 +1,137 @@
+/* Container styling */
+.container-fluid {
+    
+    background-color: #efefef00;
+}
+
+.button-css {
+
+    background-color: #21bcf0;
+    color: white;
+    font-weight: bolder;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 2rem;
+}
+
+/* Add Button Styling */
+.add_button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+/* Table container for scrolling */
+.overflow-auto {
+    max-height: 38rem;
+    overflow-y: auto;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+/* Table header row styling */
+.tr_color {
+    background-color: #21bcf0;
+    color: white;
+}
+
+/* Table header cell styling */
+th {
+    padding: 1rem;
+    text-align: left;
+}
+
+/* Table row styling */
+tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Table data cell styling */
+td {
+    padding: 1rem;
+}
+
+/* Buttons styling */
+.btn {
+    font-size: 1.25rem;
+}
+
+/* Update button styling */
+.btn-primary {
+    background-color: #21bcf0;
+    border: none;
+    color: rgb(242, 242, 242);
+}
+
+/* Hover effect for buttons */
+.btn:hover {
+    opacity: 0.8;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+  }
+  
+
+/* Delete button styling */
+.btn-danger {
+    background-color: #21bcf0;
+    border: none;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-edit
+{
+    color: white;
+    background-color: #21bcf0;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-edit:hover
+{
+    color: rgb(255, 255, 255);
+    background-color: #258c0e;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Icon inside buttons */
+.fa-solid {
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 2rem;
+    }
+
+    .table {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+}

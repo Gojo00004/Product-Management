@@ -1,0 +1,76 @@
+/* Navbar Styling */
+.navbar {
+    background-color: #21bcf0;
+    padding: 1rem;
+}
+
+/*.navbar-toggler {
+    border-color: rgb(252, 252, 252);
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+*/
+/* Navbar collapse styling */
+.navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navbar link styling */
+.navbar-nav .nav-item .nav-link {
+    color: white !important;
+    font-size: 1.25rem;
+    padding: 0.75rem 1.25rem;
+    margin-top: 5px;
+}
+
+/* Active link styling */
+.nav-link:hover {
+    background-color: #0973bea3;
+    border-radius: 15px !important;
+
+}
+
+
+/* Navbar search bar styling */
+.form-control {
+    width: 250px;
+    border-radius: 5px;
+    padding: 0.75rem;
+}
+
+/* Search button styling */
+.button-css1 {
+    background-color:#d62323;
+    border-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for search button */
+.button-css:hover {
+    background-color: #0b8a9ba2;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .form-control {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .button-css {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
