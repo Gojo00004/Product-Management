@@ -5,14 +5,14 @@ export default function Navbar(props) {
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState('');
-  const [isSearchPressed, setIsSearchPressed] = useState(false); // Track search press
+  const [isSearchPressed, setIsSearchPressed] = useState(false);
 
   // Handle search
   const handleSearch = async (e) => {
     e.preventDefault();
     setIsSearchPressed(true);
   
-    if (!searchQuery) {
+    if (!searchQuery.trim()) {
       setMessage('Please enter a search term.');
       setProducts([]);
       return;
@@ -25,16 +25,18 @@ export default function Navbar(props) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
   
-      const data1 = await res.json();
-      console.log('Fetched Data:', data1);
+      const data = await res.json();
+      console.log('Fetched Data:', data);
   
-      if (data1.success) {
-        if (Array.isArray(data1.products)) {
-          setProducts(data1.products);
+      if (data.success) {
+        if (Array.isArray(data.products)) {
+          setProducts(data.products);
+          setMessage(data.products.length ? '' : 'No products found.');
         } else {
-          console.error("Unexpected API Response:", data1);
+          console.error("Unexpected API Response:", data);
+          setMessage('Unexpected response format.');
+          setProducts([]);
         }
-        
       } else {
         setMessage('Error searching products.');
         setProducts([]);
@@ -45,31 +47,32 @@ export default function Navbar(props) {
       console.error("Error fetching products:", error);
     }
   };
-  
-  
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
+      {/* 🟢 Navbar */}
+      <nav className="navbar navbar-expand-lg custom-navbar">
         <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          {/* Navbar Toggler for Mobile */}
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ">
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/">
-                  {props.title}
-                </a>
+                <a className="nav-link fs-5" href="/">{props.title}</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/products">Products</a>
+                <a className="nav-link fs-5" href="/products">Products</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/about">About</a>
+                <a className="nav-link fs-5" href="/about">About</a>
               </li>
             </ul>
-            <form className="d-flex" role="search" onSubmit={handleSearch}>
+
+            {/* 🟢 Search Form */}
+            <form className="d-flex align-items-center" onSubmit={handleSearch}>
               <input
                 className="form-control me-2"
                 type="search"
@@ -78,44 +81,42 @@ export default function Navbar(props) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="btn button-css1 fs-5" type="submit">Search</button>
+              <button className="btn btn-primary1 fs-5" type="submit">Search</button>
             </form>
           </div>
         </div>
       </nav>
 
-      {/* Display message only after search button is pressed */}
+      {/* 🟢 Display Message After Search */}
       {isSearchPressed && message && (
         <div className="mt-3 alert alert-info">
           {message}
         </div>
       )}
- {isSearchPressed && message && (
-<div className="container mt-5">
-  {products.length >= 0 ? (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Barcode</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product, index) => (
-          <tr key={index}>
-            <td>HI{product.ProductName || product.productName}</td>
-            <td>{product.ProductPrice || product.productPrice}</td>
-            <td>{product.ProductBarcode || product.productBarcode}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  ) : (
-    isSearchPressed && <p>No products found.</p>
-  )}
-</div>
-)}
+
+      {/* 🟢 Display Products Table if Products Exist */}
+      {isSearchPressed && products.length > 0 && (
+        <div className="container mt-4">
+          <table className="table table-bordered">
+            <thead className="table-dark">
+              <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Barcode</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr key={index}>
+                  <td>{product.ProductName || product.productName}</td>
+                  <td>{product.ProductPrice || product.productPrice}</td>
+                  <td>{product.ProductBarcode || product.productBarcode}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
