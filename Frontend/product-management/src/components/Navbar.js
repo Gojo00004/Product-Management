@@ -11,23 +11,23 @@ export default function Navbar(props) {
   const handleSearch = async (e) => {
     e.preventDefault();
     setIsSearchPressed(true);
-  
+
     if (!searchQuery.trim()) {
       setMessage('Please enter a search term.');
       setProducts([]);
       return;
     }
-  
+
     try {
       const res = await fetch(`http://localhost:3001/searchproducts?query=${searchQuery}`);
-      
+
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
-  
+
       const data = await res.json();
       console.log('Fetched Data:', data);
-  
+
       if (data.success) {
         if (Array.isArray(data.products)) {
           setProducts(data.products);
@@ -72,7 +72,7 @@ export default function Navbar(props) {
             </ul>
 
             {/* 🟢 Search Form */}
-            <form className="d-flex align-items-center" onSubmit={handleSearch}>
+            <form className="d-flex align-items-center search-form" onSubmit={handleSearch}>
               <input
                 className="form-control me-2"
                 type="search"
@@ -83,6 +83,7 @@ export default function Navbar(props) {
               />
               <button className="btn btn-primary1 fs-5" type="submit">Search</button>
             </form>
+
           </div>
         </div>
       </nav>
