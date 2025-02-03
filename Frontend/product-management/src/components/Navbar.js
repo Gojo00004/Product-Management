@@ -59,12 +59,6 @@ export default function Navbar(props) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link active fs-4" aria-current="page" href="/">
-                  {/* Display logo image before title */}
-                  <img src={props.logo} alt="Logo" style={{ width: '90px', height: '100px', marginRight: '0px', marginLeft: '0px' }} />
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/">
                   {props.title}
                 </a>
               </li>
