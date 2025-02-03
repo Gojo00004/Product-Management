@@ -5,7 +5,7 @@ import Products from './components/Products';
 import InsertProduct from './components/InsertProduct'
 import UpdateProduct from './components/UpdateProduct';
 import About from './components/About';
-import logo from './Logo2.png';
+
 
 import {
   BrowserRouter as Router,
@@ -20,7 +20,6 @@ function App() {
   return (
     
     <div className="App">
-      <Navbar title="Product Management" about="About" logo={logo}></Navbar>
 
       <Router>
         <Routes>
