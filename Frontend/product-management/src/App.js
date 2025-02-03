@@ -8,7 +8,7 @@ import About from './components/About';
 import logo from './Logo2.png';
 
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom';
