@@ -6,36 +6,32 @@ export default function Navbar(props) {
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState('');
-  const [isSearchPressed, setIsSearchPressed] = useState(false); // Track search press
+  const [isSearchPressed, setIsSearchPressed] = useState(false);
 
   // Handle search
   const handleSearch = async (e) => {
     e.preventDefault();
     setIsSearchPressed(true);
-  
+
     if (!searchQuery) {
       setMessage('Please enter a search term.');
       setProducts([]);
       return;
     }
-  
+
     try {
       const res = await fetch(`http://localhost:3001/searchproducts?query=${searchQuery}`);
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-  
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+
       const data1 = await res.json();
       console.log('Fetched Data:', data1);
-  
+
       if (data1.success) {
         if (Array.isArray(data1.products)) {
           setProducts(data1.products);
         } else {
           console.error("Unexpected API Response:", data1);
         }
-        
       } else {
         setMessage('Error searching products.');
         setProducts([]);
@@ -46,8 +42,6 @@ export default function Navbar(props) {
       console.error("Error fetching products:", error);
     }
   };
-  
-  
 
   return (
     <div>
@@ -59,21 +53,18 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/">
-                  {/* Display logo image before title */}
+                <Link className="nav-link active fs-4" to="/">
                   <img src={props.logo} alt="Logo" style={{ width: '90px', height: '100px', marginRight: '0px', marginLeft: '0px' }} />
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/">
-                  {props.title}
-                </a>
+                <Link className="nav-link active fs-4" to="/">{props.title}</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/products">Products</a>
+                <Link className="nav-link active fs-4" to="/products">Products</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active fs-4" aria-current="page" href="/about">About</a>
+                <Link className="nav-link active fs-4" to="/about">About</Link>
               </li>
             </ul>
             <form className="d-flex" role="search" onSubmit={handleSearch}>
@@ -91,38 +82,34 @@ export default function Navbar(props) {
         </div>
       </nav>
 
-      {/* Display message only after search button is pressed */}
-      {isSearchPressed && message && (
-        <div className="mt-3 alert alert-info">
-          {message}
+      {isSearchPressed && message && <div className="mt-3 alert alert-info">{message}</div>}
+
+      {isSearchPressed && (
+        <div className="container mt-5">
+          {products.length > 0 ? (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Barcode</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product, index) => (
+                  <tr key={index}>
+                    <td>{product.ProductName || product.productName}</td>
+                    <td>{product.ProductPrice || product.productPrice}</td>
+                    <td>{product.ProductBarcode || product.productBarcode}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No products found.</p>
+          )}
         </div>
       )}
- {isSearchPressed && message && (
-<div className="container mt-5">
-  {products.length >= 0 ? (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Barcode</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product, index) => (
-          <tr key={index}>
-            <td>HI{product.ProductName || product.productName}</td>
-            <td>{product.ProductPrice || product.productPrice}</td>
-            <td>{product.ProductBarcode || product.productBarcode}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  ) : (
-    isSearchPressed && <p>No products found.</p>
-  )}
-</div>
-)}
     </div>
   );
 }
