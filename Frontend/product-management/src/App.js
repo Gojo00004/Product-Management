@@ -18,10 +18,11 @@ import {
 
 function App() {
   return (
+    <Router>
     <div className="App">
       <Navbar title="Product Management" about="About" logo={logo}></Navbar>
 
-      <Router>
+      
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
