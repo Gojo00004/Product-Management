@@ -19,7 +19,7 @@ export default function Navbar(props) {
     }
 
     try {
-      const res = await fetch(`http://localhost:3001/searchproducts?query=${searchQuery}`);
+      const res = await fetch(`https://product-management-system-sn7y.onrender.com/searchproducts?query=${searchQuery}`);
 
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
