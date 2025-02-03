@@ -74,6 +74,18 @@ td {
     color: rgb(242, 242, 242);
 }
 
+.btn-primary1 {
+    background-color: #f61818;
+    border: none;
+    color: rgb(242, 242, 242);
+}
+
+.btn-primary1:hover {
+    background-color: #f61818;
+    border: none;
+    color: rgb(242, 242, 242);
+}
+
 /* Hover effect for buttons */
 .btn:hover {
     opacity: 0.8;
